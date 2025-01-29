@@ -1,5 +1,0 @@
-CREATE TABLE personas (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL,
-    edad INTEGER
-);
