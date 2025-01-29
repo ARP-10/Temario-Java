@@ -19,9 +19,8 @@ public class ManejoMonitores {
 			conn = DriverManager.getConnection(URL);
 			System.out.println("Conexión exitosa!");
 			
-			boolean salir = false;
+			boolean salir = false; 
 			while(!salir) {
-				// TODO: Crear funcion para mostrar el menu
 				mostrarMenu();
 				
 				int opcion = teclado.nextInt();
@@ -29,23 +28,19 @@ public class ManejoMonitores {
 				
 				switch(opcion) {
 					case 1: 
-						// TODO: Crear función para leer la BBDD
 						listaMonitores(conn);
 						break;
 					
 					case 2: 
-						// TODO: Crear función para crear un nuevo monitor
-						crearMonitor(conn, teclado)
+						crearMonitor(conn, teclado);
 						break;
 						
 					case 3: 
-						// TODO: Crear función para actualizar un monitor
 						actualizarMonitor(conn, teclado);
 						break;
 						
 					case 4: 
-						// TODO: Crear función para eliminar un monitor
-						eliminarMonitor();
+						eliminarMonitor(conn, teclado);
 						break;
 						
 					case 5: 
@@ -130,6 +125,66 @@ public class ManejoMonitores {
 			e.printStackTrace();
 		}
 	}
+
+	private static void actualizarMonitor(Connection conn, Scanner teclado) {
+		System.out.println("\n Actualizar Monitor: ");
+		System.out.println("Inserta el ID del monitor a actualizar: ");
+		int id = teclado.nextInt();
+		teclado.nextLine(); // Limpiamos el Buffer
+
+		System.out.println("Nuevo ancho: ");
+		int ancho = teclado.nextInt();
+		System.out.println("Nuevo alto: ");
+		int alto = teclado.nextInt();
+		System.out.println("Nueva diagonal: ");
+		int diagonal = teclado.nextInt();
+		teclado.nextLine(); // Limpiamos el Buffer
+		System.out.println("Nuevo color: ");
+		String color = teclado.nextLine();
+
+		String updateQuery = "UPDATE monitores SET ancho = ?, alto = ?, diagonal = ?, color = ? WHERE id = ?";
+
+		try (PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
+			stmt.setInt(1, ancho);
+			stmt.setInt(2, alto);
+			stmt.setInt(3, diagonal);
+			stmt.setString(4, color);
+			stmt.setInt(5, id);
+
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println(rowsAffected + " monitor actualizado");
+			} else {
+				System.out.println("No se ha encontrado el monitor con ID: " + id);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al actualizar monitor");
+			e.printStackTrace();
+		}
+	}
 	
-	
+	private static void eliminarMonitor(Connection conn, Scanner teclado) {
+		System.out.println("\n Eliminar Monitor: ");
+		System.out.println("Inserta el ID del monitor a eliminar: ");
+		int id = teclado.nextInt();
+		teclado.nextLine(); // Limpiamos el Buffer
+		
+		String deleteQuery = "DELETE FROM monitores WHERE id = ?";
+		
+		try (PreparedStatement stmt = conn.prepareStatement(deleteQuery)) {
+			stmt.setInt(1, id);
+			
+			int rowsAffected = stmt.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println(rowsAffected + " monitor eliminado");
+			} else {
+				System.out.println("No se ha encontrado el monitor con ID: " + id);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al eliminar monitor");
+			e.printStackTrace();
+		}
+	}
 }
