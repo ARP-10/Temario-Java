@@ -32,5 +32,3 @@ Este repositorio contiene una recopilación de ejercicios y ejemplos prácticos 
 ### 6. Hilos y concurrencia
 - **Hilos en Java**: Creación e inicio de hilos.
 - **Sincronización**: Uso de `synchronized`.
-
-## Cómo usar este repositorio 🚀
