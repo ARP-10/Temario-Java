@@ -15,5 +15,10 @@
         123
         1234
         12345
-
+7. Haz lo mismo que el ejercicio anterior pero imprimiendo el numero al revés
+	5
+	45
+	345
+	2345
+	12345
         
