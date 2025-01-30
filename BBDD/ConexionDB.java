@@ -22,13 +22,13 @@ public class ConexionDB {
 			String query = "Select * FROM monitores";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
-			
+			/*
 			// Crear un nuevo monitor
 			String insertQuery = "INSERT INTO monitores (ancho, alto, diagonal, color) VALUES (?, ?, ?, ?)";
 			PreparedStatement stmtCreate = conn.prepareStatement(insertQuery);
 			
 			// Metemos los parametros (CREATE)
-			/*
+			
 			 * stmtCreate.setInt(1, 1366);
 			stmtCreate.setInt(2, 768);
 			stmtCreate.setInt(3, 17);

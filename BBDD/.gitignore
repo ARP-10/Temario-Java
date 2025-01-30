@@ -1,2 +1,5 @@
 /ConexionDB.class
 /ManejoMonitores.class
+/ManejoMonitoresJDBC.class
+/Monitor.class
+/Consola.class
