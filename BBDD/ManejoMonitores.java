@@ -131,5 +131,11 @@ public class ManejoMonitores {
 		}
 	}
 	
+	private static void actualizarMonitor(Connection conn, Scanner teclado) {
+		System.out.println("\n Actualizar monitor");
+		System.out.println("Inserta el ID del monitor que quieres actualizar: ");
+		
+	}
+	
 	
 }
